@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSearch: query => dispatch(fetchMoviesByTitle(query)),
-  onQueryChange: (value) => dispatch(setSearchByTitleQuery('title', value))
+  onQueryChange: (value) => dispatch(setSearchByTitleQuery('title', value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieTitle);

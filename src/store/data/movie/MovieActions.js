@@ -1,7 +1,7 @@
 import { RSAA } from "redux-api-middleware";
 import { scopeTypeDescriptors } from "../../scope";
 import { REQUEST, SUCCESS, FAILURE } from "../../loading";
-import { MOVIE_RESULTS_SCOPE } from "./constants";
+import { MOVIE_RESULTS_SCOPE, MOVIE_DETAIL_SCOPE } from "./constants";
 
 /**
  * Fetch a list of movies by title
@@ -18,3 +18,12 @@ export const fetchMoviesByTitle = title => ({
     headers: { "Content-Type": "application/json" }
   }
 });
+
+export const getMovieDetail = id => ({
+  [RSAA]: {
+    endpoint: `/movie/${id}`,
+    method: 'GET',
+    types: scopeTypeDescriptors([REQUEST, SUCCESS, FAILURE], MOVIE_DETAIL_SCOPE),
+    headers: { "Content-Type": "application/json" }
+  }
+})

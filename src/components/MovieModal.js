@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -6,6 +6,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withStyles } from "@material-ui/core/styles";
+
+
+import Poster from './Poster';
+
 
 const styles = theme => ({
   modal: {
@@ -21,7 +25,14 @@ const styles = theme => ({
   }
 });
 
-const MovieModal = ({ classes, handleClose, open, movie }) => {
+const MovieModal = ({ classes, handleClose, open, movie, getMovieDetail, movieDetail }) => {
+
+  useEffect(() => {
+    getMovieDetail()
+  }, [getMovieDetail]);
+
+  const { title, overview, backdrop_path } = movie
+
   return (
     <Dialog
       open={open}
@@ -30,11 +41,16 @@ const MovieModal = ({ classes, handleClose, open, movie }) => {
       aria-labelledby="scroll-dialog-title"
       aria-describedby="scroll-dialog-description"
     >
-      <DialogTitle id="scroll-dialog-title">{movie.title}</DialogTitle>
+      <DialogTitle id="scroll-dialog-title">{title}</DialogTitle>
       <DialogContent dividers>
         <DialogContentText>
-          {movie.overview}
           {/* Insert poster here */}
+          <Poster
+            classes={classes}
+            path={backdrop_path}
+            overview={overview}
+            productionCompanies={movieDetail !== null ? movieDetail.production_companies : []}
+          />
         </DialogContentText>
       </DialogContent>
       <DialogActions>

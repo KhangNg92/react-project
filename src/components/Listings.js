@@ -10,6 +10,8 @@ import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import MovieModal from "./MovieModalContainer";
 
+
+
 const styles = theme => ({
   table: {
     minWidth: 650
@@ -22,6 +24,8 @@ const styles = theme => ({
 const Listings = ({ classes, rows }) => {
   const [open, setOpen] = React.useState(false);
   const [movieId, setMovieId] = React.useState(false);
+
+
   const handleOpen = e => {
     setMovieId(e.currentTarget.getAttribute("data-movie-id"));
     setOpen(true);
